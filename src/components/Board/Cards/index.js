@@ -15,8 +15,12 @@ export const Cards = ({ handler }) => {
     })()
   }, [])
 
+  const flipHandler = (event) => {
+    console.log(event.target)
+  }
+
   return cards.map(({ image, suit, value }, i) => (
-    <Card image={image} suit={suit} value={value} key={i} />
+    <Card image={image} suit={suit} value={value} handler={flipHandler} key={i} />
   ))
 }
 
