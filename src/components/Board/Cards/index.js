@@ -19,9 +19,17 @@ export const Cards = ({ handler }) => {
     console.log(event.target)
   }
 
-  return cards.map(({ image, suit, value }, i) => (
-    <Card image={image} suit={suit} value={value} handler={flipHandler} key={i} />
+  const renderCards = () => cards.map(({ image, suit, value }, i) => (
+    <Card
+      image={image}
+      suit={suit}
+      value={value}
+      handler={flipHandler}
+      key={i}
+    />
   ))
+
+  return <div>{renderCards()}</div>
 }
 
 Cards.propTypes = {
