@@ -9,11 +9,16 @@ import "./Cards.css"
 
 export const Cards = ({ handler }) => {
   const [cards, setCards] = useState([])
+  const [flippedCards, setFlippedCards] = useState([])
 
   useEffect(() => {
     ;(async () => {
       const { cards } = await api.index(4)
-      setCards(cards)
+      // Duplicate the cards
+      const cardsWithDups = cards.concat(Array.from(cards))
+
+      // Assign each one a unique id - possibly by using 'code' and the current index
+      setCards(cardsWithDups)
     })()
   }, [])
 
