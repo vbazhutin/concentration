@@ -30,15 +30,19 @@ export const Cards = ({ handler }) => {
     console.log(event.target)
   }
 
-  const renderCards = () => cards.map(({ image, suit, value }, i) => (
-    <Card
-      image={image}
-      suit={suit}
-      value={value}
-      handler={flipHandler}
-      key={i}
-    />
-  ))
+  const renderCards = () =>
+    // 'suit' and 'value' are just for alt tag
+    cards.map(({ code, id, image, suit, value }, i) => (
+      <Card
+        code={code}
+        id={id}
+        image={image}
+        suit={suit}
+        value={value}
+        handler={flipHandler}
+        key={i}
+      />
+    ))
 
   return <div className="container">{renderCards()}</div>
 }
