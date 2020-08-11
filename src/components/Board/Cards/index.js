@@ -5,6 +5,8 @@ import { Card } from "./Card"
 
 import api from "api"
 
+import "./Cards.css"
+
 export const Cards = ({ handler }) => {
   const [cards, setCards] = useState([])
 
@@ -29,7 +31,7 @@ export const Cards = ({ handler }) => {
     />
   ))
 
-  return <div>{renderCards()}</div>
+  return <div className="container">{renderCards()}</div>
 }
 
 Cards.propTypes = {
