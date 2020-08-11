@@ -24,10 +24,37 @@ export const Cards = ({ handler }) => {
 
       setCards(cardsWithIDs)
     })()
-  }, [])
+  },
+    // DO NOT re-trigger this effect after the initial mount - don't worry about state changes!
+    [])
 
-  const flipHandler = (event) => {
-    console.log(event.target)
+  useEffect(() => {
+    setCards((prevCards) =>
+      prevCards.map((card) => {
+        if (card.id === flippedCards[0].id || card.id === flippedCards[1]?.id) {
+          card.flipped = true
+        }
+        return card
+      })
+    )
+  }, [flippedCards])
+
+  const flipHandler = ({ target: { dataset } }) => {
+    // If it's true that there is no length on flippedCards...
+    if (!flippedCards.length) {
+      setFlippedCards((flippedCards) =>
+        flippedCards.concat({ id: dataset.id, code: dataset.code })
+      )
+    } else if (flippedCards[0].id !== dataset.id) {
+      setFlippedCards((flippedCards) =>
+        flippedCards.concat({
+          id: dataset.id,
+          code: dataset.code,
+        })
+      )
+
+    }
+
   }
 
   const renderCards = () =>
