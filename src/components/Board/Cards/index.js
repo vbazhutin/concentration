@@ -14,11 +14,15 @@ export const Cards = ({ handler }) => {
   useEffect(() => {
     ;(async () => {
       const { cards } = await api.index(4)
-      // Duplicate the cards
       const cardsWithDups = cards.concat(Array.from(cards))
 
-      // Assign each one a unique id - possibly by using 'code' and the current index
-      setCards(cardsWithDups)
+      const cardsWithIDs = cardsWithDups.map((card, i) => {
+        const cardCopy = JSON.parse(JSON.stringify(card))
+        cardCopy.id = `${cardCopy.code}-${i}`
+        return cardCopy
+      })
+
+      setCards(cardsWithIDs)
     })()
   }, [])
 
