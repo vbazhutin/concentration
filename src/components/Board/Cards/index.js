@@ -16,6 +16,11 @@ export const Cards = ({ cards, handler }) => {
       setMatchedCards((prevMatched) =>
         prevMatched.concat(flippedCards[0]?.code)
       )
+
+      if (matchedCards.length === (cards.length / 2 - 1)) {
+        handler(false)
+      }
+
       // Clicking matching cards to quickly may result in 🐛 flip.
       // Realistically, this should not happen in a 'real' game.
       setFlippedCards([])
@@ -29,6 +34,7 @@ export const Cards = ({ cards, handler }) => {
 
   // if matchedCards.length = cards.length / 2, then stop the timer
   const flipHandler = ({ target: { dataset } }) => {
+    handler(true)
     // If it's true that there is no length of flippedCards...
     if (!flippedCards.length) {
       setFlippedCards((flippedCards) =>
