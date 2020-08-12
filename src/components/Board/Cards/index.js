@@ -15,6 +15,14 @@ export const Cards = ({ cards, handler }) => {
       setMatchedCards((prevMatched) =>
         prevMatched.concat(flippedCards[0]?.code)
       )
+      // Clicking matching cards to quickly may result in 🐛 flip.
+      // Realistically, this should not happen in a 'real' game.
+      setFlippedCards([])
+    }
+    if (flippedCards.length === 2) {
+      setTimeout(() => {
+        setFlippedCards([])
+      }, 3000)
     }
   }, [flippedCards])
 
