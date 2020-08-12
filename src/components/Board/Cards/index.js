@@ -6,6 +6,7 @@ import { Card } from "./Card"
 import "./Cards.css"
 
 export const Cards = ({ cards, handler }) => {
+  // TODO: Replace 'useState' with 'useReducer' so we can directly manage cards from here instead of 'changing props! 👎🏽 🤮
   // This will just manage flipped and matched cards
   const [flippedCards, setFlippedCards] = useState([])
   const [matchedCards, setMatchedCards] = useState([])
