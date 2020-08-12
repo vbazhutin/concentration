@@ -37,6 +37,14 @@ export const Cards = ({ handler }) => {
         return card
       })
     )
+
+    if (flippedCards[0]?.code === flippedCards[1]?.code) {
+      cards.map((card) => {
+        if (card.id === flippedCards[0].id || card.id === flippedCards[1]?.id) {
+          card.matched = true
+          return card
+        }
+      })
   }, [flippedCards])
 
   const flipHandler = ({ target: { dataset } }) => {
@@ -64,6 +72,7 @@ export const Cards = ({ handler }) => {
         code={code}
         id={id}
         image={image}
+        matched={matched}
         suit={suit}
         value={value}
         handler={flipHandler}

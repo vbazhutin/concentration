@@ -20,6 +20,7 @@ export const Card = ({
         data-code={code}
         // id will be used to id the correct card in our Array of cards (dataset.id)
         data-id={id}
+        className={matched ? "matched" : null}
       />
     </button>
   )
