@@ -1,11 +1,37 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from "react"
 
 import { Cards } from "./Cards"
-import {Timer} from "./Timer"
+import { Timer } from "./Timer"
+
+import api from "api"
 
 export const Board = () => {
-  return <main>
-    <Cards />
-    <Timer />
-  </main>
+  const [cards, setCards] = useState([])
+
+  useEffect(
+    () => {
+      ;(async () => {
+        const { cards } = await api.index(4)
+
+        // Duplicate the cards and then add unique id to each one (⚠️ 'references')
+        const cardsWithIDs = cards.concat(Array.from(cards)).map((card, i) => {
+          // We can do the 'spread' 'shallow copy' for these non-nested objects
+          const cardCopy = {...card}
+          cardCopy.id = `${cardCopy.code}-${i}`
+          return cardCopy
+        })
+
+        setCards(cardsWithIDs)
+      })()
+    },
+    // DO NOT re-trigger this effect after the initial mount - don't worry about state changes!
+    []
+  )
+
+  return (
+    <main>
+      <Cards cards={cards} />
+      <Timer />
+    </main>
+  )
 }
