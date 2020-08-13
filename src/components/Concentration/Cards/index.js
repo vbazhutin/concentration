@@ -40,31 +40,25 @@ export const Cards = ({ handler }) => {
       // If the codes of the currently flipped card and the dataset match...
       if (flippedCards[0]?.code === code) {
         setCards(truthifyCards("code", "matched", code))
-
-        // If we cannot find any cards with 'matched: false'
         if (!cards.find(({ matched }) => !matched)) {
           handler(false)
         }
 
         // After matching, flip all the cards back so we can keep flipping
         setCards(resetFlippedCards())
+      } else if(flippedCards[0]) {
+        setTimeout(() => {
+          setCards(resetFlippedCards())
+        }, 1000)
       }
-    }
-
-    // If we have at least a flipped card, then we have a 2nd card
-    if (flippedCards[0]) {
-      setTimeout(() => {
-        setCards(resetFlippedCards())
-      }, 3000)
     }
   }
 
-  const resetFlippedCards = () => {
-    return cards.map((card) => {
+  const resetFlippedCards = () =>
+    cards.map((card) => {
       card.flipped = false
       return card
     })
-  }
 
   const truthifyCards = (k2Locate, k2Change, val2Match) =>
     cards.map((card) => {
