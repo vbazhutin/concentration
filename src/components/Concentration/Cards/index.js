@@ -28,9 +28,7 @@ export const Cards = ({ handler }) => {
     })()
   }, [])
 
-  const flipHandler = ({ currentTarget: { dataset } }) => {
-    const { code, id } = dataset
-
+  const flipHandler = ({ currentTarget: { dataset: {code, id} } }) => {
     const flippedCards = cards.filter(({ flipped, matched }) => flipped && !matched)
 
     handler(true)
