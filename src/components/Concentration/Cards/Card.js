@@ -3,13 +3,13 @@ import React from "react"
 
 export const Card = ({
   code,
+  flipped,
+  handler,
   id,
   image,
-  flipped,
   matched,
   suit,
   value,
-  handler,
 }) => {
   return (
     <button onClick={handler} data-code={code} data-id={id}>

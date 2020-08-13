@@ -31,24 +31,10 @@ export const Cards = ({ handler }) => {
     handler(true)
 
     // Get the code and id from dataset
-    const { id } = dataset
+    const { code, id } = dataset
 
     // Filter out flipped cards
     const flippedCards = cards.filter(({ flipped }) => flipped)
-
-    // Check if any cards are currently flipped
-    if (!flippedCards.length) {
-      // If there are no flipped cards, we can immediately find and flip the card that matches dataset id (setCards)
-      setCards(
-        cards.map((card) => {
-          if (card.id === id) {
-            card.flipped = true
-          }
-
-          return card
-        })
-      )
-    }
 
     // As long as there are less than 2 cards in 'flippedCards'
     if (flippedCards.length < 2) {
@@ -61,6 +47,20 @@ export const Cards = ({ handler }) => {
           return card
         })
       )
+
+      // If the codes of the currently flipped card and the dataset match...
+      if (flippedCards[0]?.code === code) {
+        setCards(
+          // Update the cards and mark the correct ones as 'matched' based on codes
+          cards.map((card) => {
+            if (card.code === code) {
+              card.matched = true
+            }
+
+            return card
+          })
+        )
+      }
     }
   }
 
