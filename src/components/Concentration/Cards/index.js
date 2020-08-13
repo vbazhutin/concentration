@@ -26,23 +26,25 @@ export const Cards = ({ handler }) => {
     })()
   }, [])
 
-  // if matchedCards.length = cards.length / 2, then stop the timer
   const flipHandler = ({ currentTarget: { dataset } }) => {
-    handler(true)
-
-    // Get the code and id from dataset
     const { code, id } = dataset
 
-    // Filter out flipped cards
     const flippedCards = cards.filter(({ flipped }) => flipped)
 
-    // As long as there are less than 2 cards in 'flippedCards'
+    handler(true)
+
     if (flippedCards.length < 2) {
       setCards(truthifyCards("id", "flipped", id))
 
       // If the codes of the currently flipped card and the dataset match...
       if (flippedCards[0]?.code === code) {
         setCards(truthifyCards("code", "matched", code))
+
+        // If we cannot find any cards with 'matched: false'
+        if (!cards.find(({ matched }) => !matched)) {
+          handler(false)
+        }
+
         // After matching, flip all the cards back so we can keep flipping
         setCards(resetFlippedCards())
       }
@@ -51,7 +53,6 @@ export const Cards = ({ handler }) => {
     // If we have at least a flipped card, then we have a 2nd card
     if (flippedCards[0]) {
       setTimeout(() => {
-        // Reset all the cards to flipped false
         setCards(resetFlippedCards())
       }, 3000)
     }
@@ -94,6 +95,5 @@ export const Cards = ({ handler }) => {
 }
 
 Cards.propTypes = {
-  // Notify parent of when to start and stop the timer
   handler: PropTypes.func,
 }
