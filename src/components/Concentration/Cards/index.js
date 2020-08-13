@@ -35,7 +35,7 @@ export const Cards = ({ handler }) => {
 
     handler(true)
 
-    if (flippedCards.length < 2) {
+    if (flippedCards.length < 2 && flippedCards[0]?.id !== id) {
       setCards(truthifyCards("id", "flipped", id))
 
       // If the codes of the currently flipped card and the dataset match...
