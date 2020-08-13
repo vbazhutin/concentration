@@ -1,6 +1,8 @@
 import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
 
+import "bulma/css/bulma.css"
+
 export const Timer = ({ toggle }) => {
   const [time, setTime] = useState(0)
 
@@ -19,7 +21,7 @@ export const Timer = ({ toggle }) => {
     }
   })
 
-  return <p>{convertSecondsToMinutesAndSeconds(time)}</p>
+  return <p className="container-fluid has-background-dark has-text-centered has-text-info is-size-1 py-3">{convertSecondsToMinutesAndSeconds(time)}</p>
 }
 
 Timer.propTypes = { toggle: PropTypes.bool }

@@ -6,7 +6,7 @@ import { Card } from "./Card"
 import shuffle from "lodash.shuffle"
 import api from "api"
 
-import "./Cards.css"
+import styles from "./Cards.module.css"
 
 export const Cards = ({ handler }) => {
   const [cards, setCards] = useState([])
@@ -86,7 +86,7 @@ export const Cards = ({ handler }) => {
       )
     })
 
-  return <div className="container">{renderCards()}</div>
+  return <div className={styles.container}>{renderCards()}</div>
 }
 
 Cards.propTypes = {
