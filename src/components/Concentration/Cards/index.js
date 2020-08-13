@@ -48,7 +48,7 @@ export const Cards = ({ handler }) => {
       } else if (flippedCards[0]) {
         setTimeout(() => {
           setCards(resetFlippedCards())
-        }, 1000)
+        }, 1500)
       }
     }
   }
