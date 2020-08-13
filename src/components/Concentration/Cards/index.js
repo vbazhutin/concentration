@@ -29,6 +29,39 @@ export const Cards = ({ handler }) => {
   // if matchedCards.length = cards.length / 2, then stop the timer
   const flipHandler = ({ currentTarget: { dataset } }) => {
     handler(true)
+
+    // Get the code and id from dataset
+    const { id } = dataset
+
+    // Filter out flipped cards
+    const flippedCards = cards.filter(({ flipped }) => flipped)
+
+    // Check if any cards are currently flipped
+    if (!flippedCards.length) {
+      // If there are no flipped cards, we can immediately find and flip the card that matches dataset id (setCards)
+      setCards(
+        cards.map((card) => {
+          if (card.id === id) {
+            card.flipped = true
+          }
+
+          return card
+        })
+      )
+    }
+
+    // As long as there are less than 2 cards in 'flippedCards'
+    if (flippedCards.length < 2) {
+      setCards(
+        cards.map((card) => {
+          if (card.id === id) {
+            card.flipped = true
+          }
+
+          return card
+        })
+      )
+    }
   }
 
   const renderCards = () =>
