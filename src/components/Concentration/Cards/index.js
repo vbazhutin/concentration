@@ -38,31 +38,22 @@ export const Cards = ({ handler }) => {
 
     // As long as there are less than 2 cards in 'flippedCards'
     if (flippedCards.length < 2) {
-      setCards(
-        cards.map((card) => {
-          if (card.id === id) {
-            card.flipped = true
-          }
-
-          return card
-        })
-      )
+      setCards(truthifyCards("id", "flipped", id))
 
       // If the codes of the currently flipped card and the dataset match...
       if (flippedCards[0]?.code === code) {
-        setCards(
-          // Update the cards and mark the correct ones as 'matched' based on codes
-          cards.map((card) => {
-            if (card.code === code) {
-              card.matched = true
-            }
-
-            return card
-          })
-        )
+        setCards(truthifyCards("code", "matched", code))
       }
     }
   }
+
+  const truthifyCards = (k2Locate, k2Change, val2Match) =>
+    cards.map((card) => {
+      if (card[k2Locate] === val2Match) {
+        card[k2Change] = true
+      }
+      return card
+    })
 
   const renderCards = () =>
     // 'suit' and 'value' are just for alt tag
