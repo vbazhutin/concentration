@@ -1,0 +1,22 @@
+.matched {
+  animation-duration: 0.75s;
+  animation-fill-mode: both;
+  animation-name: flipOutX;
+  backface-visibility: visible;
+}
+
+@keyframes flipOutX {
+  from {
+    transform: perspective(400px);
+  }
+
+  30% {
+    opacity: 1;
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+  }
+
+  to {
+    opacity: 0;
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+  }
+}

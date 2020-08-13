@@ -1,6 +1,8 @@
 import PropTypes from "prop-types"
 import React from "react"
 
+import "./Card.css"
+
 export const Card = ({
   code,
   flipped,
