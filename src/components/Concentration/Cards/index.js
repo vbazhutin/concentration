@@ -3,8 +3,9 @@ import React, { useState, useEffect } from "react"
 
 import { Card } from "./Card"
 
-import shuffle from "lodash.shuffle"
 import api from "api"
+
+import shuffle from "lodash.shuffle"
 
 import styles from "./Cards.module.css"
 
