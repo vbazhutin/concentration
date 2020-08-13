@@ -23,7 +23,7 @@ export const Cards = ({ handler }) => {
         return cardCopy
       })
 
-      setCards(cardsWithIDs)
+      setCards(shuffle(cardsWithIDs))
     })()
   }, [])
 
