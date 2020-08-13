@@ -31,7 +31,7 @@ export const Cards = ({ handler }) => {
   const flipHandler = ({ currentTarget: { dataset } }) => {
     const { code, id } = dataset
 
-    const flippedCards = cards.filter(({ flipped }) => flipped)
+    const flippedCards = cards.filter(({ flipped, matched }) => flipped && !matched)
 
     handler(true)
 
@@ -41,13 +41,11 @@ export const Cards = ({ handler }) => {
       // If the codes of the currently flipped card and the dataset match...
       if (flippedCards[0]?.code === code) {
         setCards(truthifyCards("code", "matched", code))
+
         if (!cards.find(({ matched }) => !matched)) {
           handler(false)
         }
-
-        // After matching, flip all the cards back so we can keep flipping
-        setCards(resetFlippedCards())
-      } else if(flippedCards[0]) {
+      } else if (flippedCards[0]) {
         setTimeout(() => {
           setCards(resetFlippedCards())
         }, 1000)
