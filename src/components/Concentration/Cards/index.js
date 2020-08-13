@@ -43,7 +43,27 @@ export const Cards = ({ handler }) => {
       // If the codes of the currently flipped card and the dataset match...
       if (flippedCards[0]?.code === code) {
         setCards(truthifyCards("code", "matched", code))
+        // After matching, flip all the cards back so we can keep flipping
+        setCards(
+          cards.map((card) => {
+            card.flipped = false
+            return card
+          })
+        )
       }
+    }
+
+    // If we have at least a flipped card, then we have a 2nd card
+    if (flippedCards[0]) {
+      setTimeout(() => {
+        // Reset all the cards to flipped false
+        setCards(
+          cards.map((card) => {
+            card.flipped = false
+            return card
+          })
+        )
+      }, 3000)
     }
   }
 
