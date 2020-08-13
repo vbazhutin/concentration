@@ -13,7 +13,7 @@ export const Concentration = () => {
   return (
     <main>
       <Cards handler={handleCards} />
-      <Timer toggle={toggleTimer}/>
+      <Timer toggle={toggleTimer} />
     </main>
   )
 }
