@@ -44,12 +44,7 @@ export const Cards = ({ handler }) => {
       if (flippedCards[0]?.code === code) {
         setCards(truthifyCards("code", "matched", code))
         // After matching, flip all the cards back so we can keep flipping
-        setCards(
-          cards.map((card) => {
-            card.flipped = false
-            return card
-          })
-        )
+        setCards(resetFlippedCards())
       }
     }
 
@@ -57,14 +52,16 @@ export const Cards = ({ handler }) => {
     if (flippedCards[0]) {
       setTimeout(() => {
         // Reset all the cards to flipped false
-        setCards(
-          cards.map((card) => {
-            card.flipped = false
-            return card
-          })
-        )
+        setCards(resetFlippedCards())
       }, 3000)
     }
+  }
+
+  const resetFlippedCards = () => {
+    return cards.map((card) => {
+      card.flipped = false
+      return card
+    })
   }
 
   const truthifyCards = (k2Locate, k2Change, val2Match) =>
