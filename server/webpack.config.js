@@ -1,7 +1,7 @@
 module.exports = {
   target: 'node',
   mode: 'development',
-  entry: './index.js',
+  entry: './server.js',
   resolve: {
     modules: ['node_modules'],
   },
