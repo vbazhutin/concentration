@@ -7,7 +7,6 @@
     "start-server": "nodemon 'dist/main.js'",
     "watcher": "webpack --watch"
   },
-  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
