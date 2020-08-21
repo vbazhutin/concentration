@@ -3,7 +3,6 @@ import React, { useEffect, useState, Fragment } from "react"
 
 import {Form} from "./Form"
 
-import "bulma/css/bulma.css"
 
 export const Score = ({ gameOver, toggle }) => {
   const [time, setTime] = useState(0)
