@@ -12,7 +12,7 @@ export const Form = ({handler}) => {
         <input
           type="number"
           id="pairsOfCards"
-          placeholder="(Default: 4)"
+          placeholder="Default: 4"
           className="mx-2"
         />
       </div>
