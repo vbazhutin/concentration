@@ -1,8 +1,7 @@
 import PropTypes from "prop-types"
 import React, { useEffect, useState, Fragment } from "react"
 
-import {Form} from "./Form"
-
+import { Form } from "./Form"
 
 export const Score = ({ gameOver, toggle }) => {
   const [time, setTime] = useState(0)
@@ -27,7 +26,7 @@ export const Score = ({ gameOver, toggle }) => {
       <p className="container-fluid has-background-dark has-text-centered has-text-info is-size-1 py-3">
         {convertSecondsToMinutesAndSeconds(time)}
       </p>
-      <Form gameOver={gameOver}/>
+      <Form gameOver={gameOver} />
     </Fragment>
   )
 }
