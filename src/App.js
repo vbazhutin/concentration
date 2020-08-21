@@ -9,7 +9,7 @@ import "./App.css"
 export const App = () => (
   <Router>
     <Welcome />
-    <Route path="/">
+    <Route exact={true} path="/">
       <HiScores />
     </Route>
 
