@@ -26,7 +26,7 @@ export const Cards = ({ gameOver, handler, pairs }) => {
 
       setCards(shuffle(cardsWithIDs))
     })()
-  }, [])
+  }, [pairs])
 
   const flipHandler = ({ currentTarget: { dataset: {code, id} } }) => {
     const flippedCards = cards.filter(({ flipped, matched }) => flipped && !matched)
