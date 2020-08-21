@@ -26,6 +26,7 @@ export const Score = ({ gameOver, toggle }) => {
       <p className="container-fluid has-background-dark has-text-centered has-text-info is-size-1 py-3">
         {convertSecondsToMinutesAndSeconds(time)}
       </p>
+      {/* Prop drilling  */}
       <Form gameOver={gameOver} />
     </Fragment>
   )

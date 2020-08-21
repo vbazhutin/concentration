@@ -18,6 +18,7 @@ export const Card = ({
       <img
         src={flipped ? image : "https://source.unsplash.com/random/226x314"}
         alt={`${value} of ${suit}`}
+        // Conditional class
         className={matched ? "matched" : null}
       />
     </button>

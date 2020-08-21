@@ -28,22 +28,36 @@ export const Cards = ({ gameOver, handler, pairs }) => {
     })()
   }, [pairs])
 
-  const flipHandler = ({ currentTarget: { dataset: {code, id} } }) => {
-    const flippedCards = cards.filter(({ flipped, matched }) => flipped && !matched)
+  const flipHandler = ({
+    currentTarget: {
+      dataset: { code, id },
+    },
+  }) => {
+    const flippedCards = cards.filter(
+      ({ flipped, matched }) => flipped && !matched
+    )
 
     handler(true)
 
+    // Every card has a unique 'id'
+    // Make sure that the 'id' 👆🏽 that came in from the currently clicked card is NOT the same as the flipped card that we have
     if (flippedCards.length < 2 && flippedCards[0]?.id !== id) {
+      // Take the 'clicked id' and find it in the current cards and set to flip
       setCards(truthifyCards("id", "flipped", id))
 
-      // If the codes of the currently flipped card and the dataset match...
+      // If the codes of the currently flipped card and the clicked code match...
       if (flippedCards[0]?.code === code) {
+        // Set this card as matched
         setCards(truthifyCards("code", "matched", code))
 
+        // If all of the cards are matched...
         if (!cards.find(({ matched }) => !matched)) {
+          // Notify parent that the game is over (or stop the timer)
           handler(false)
         }
-      } else if (flippedCards[0]) {
+      }
+      // If there is no match, then reset the flipped cards
+      else if (flippedCards[0]) {
         setTimeout(() => {
           setCards(resetFlippedCards())
         }, 1500)
@@ -57,6 +71,8 @@ export const Cards = ({ gameOver, handler, pairs }) => {
       return card
     })
 
+  // e.g. ("id", "flipped", id) - Use the id property and compare with the id value.
+  // If it matches, set 'flipped' to 'true'
   const truthifyCards = (k2Locate, k2Change, val2Match) =>
     cards.map((card) => {
       if (card[k2Locate] === val2Match) {
@@ -93,5 +109,5 @@ export const Cards = ({ gameOver, handler, pairs }) => {
 Cards.propTypes = {
   gameOver: PropTypes.bool,
   handler: PropTypes.func,
-  pairs: PropTypes.number
+  pairs: PropTypes.number,
 }
