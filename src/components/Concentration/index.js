@@ -7,9 +7,14 @@ import { Timer } from "./Timer"
 export const Concentration = () => {
   const [pairsOfCards, setPairsOfCards] = useState("")
   const [toggleTimer, setToggleTimer] = useState(false)
+  const [gameOver, setGameOver] = useState(false)
 
   const handleCards = (toggle) => {
     setToggleTimer(toggle)
+    // Toggle will only become 'false' in this 'handler' if all of the cards have been matched
+    if (!toggle) {
+      setGameOver(true)
+    }
   }
 
   const handleForm = (event) => {
@@ -23,7 +28,7 @@ export const Concentration = () => {
 
   return (
     <main>
-      <Cards handler={handleCards} pairs={pairsOfCards} />
+      <Cards handler={handleCards} pairs={pairsOfCards} gameOver={gameOver} />
       <Timer toggle={toggleTimer} />
     </main>
   )

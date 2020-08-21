@@ -9,12 +9,12 @@ import shuffle from "lodash.shuffle"
 
 import styles from "./Cards.module.css"
 
-export const Cards = ({ handler, pairs }) => {
+export const Cards = ({ gameOver, handler, pairs }) => {
   const [cards, setCards] = useState([])
 
   useEffect(() => {
     ;(async () => {
-      const { cards } = await api.index(pairs * 2)
+      const { cards } = await api.index(pairs)
 
       // Duplicate the cards and then add unique id to each one (⚠️ 'references')
       const cardsWithIDs = cards.concat(Array.from(cards)).map((card, i) => {
@@ -83,10 +83,15 @@ export const Cards = ({ handler, pairs }) => {
       )
     })
 
+  if (gameOver) {
+    return null
+  }
+
   return <div className={styles.container}>{renderCards()}</div>
 }
 
 Cards.propTypes = {
+  gameOver: PropTypes.func,
   handler: PropTypes.func,
   pairs: PropTypes.string
 }
