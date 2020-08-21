@@ -5,7 +5,7 @@ import { Cards } from "./Cards"
 import { Timer } from "./Timer"
 
 export const Concentration = () => {
-  const [pairsOfCards, setPairsOfCards] = useState("4")
+  const [pairsOfCards, setPairsOfCards] = useState("")
   const [toggleTimer, setToggleTimer] = useState(false)
 
   const handleCards = (toggle) => {
@@ -14,12 +14,15 @@ export const Concentration = () => {
 
   const handleForm = (event) => {
     event.preventDefault()
-    setPairsOfCards(event.target.elements[0].value)
+    setPairsOfCards(event.target.elements[0].value || 4)
+  }
+
+  if (!pairsOfCards) {
+    return <Form handler={handleForm} />
   }
 
   return (
     <main>
-      <Form handler={handleForm} />
       <Cards handler={handleCards} pairs={pairsOfCards} />
       <Timer toggle={toggleTimer} />
     </main>

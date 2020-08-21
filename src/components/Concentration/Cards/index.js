@@ -9,12 +9,12 @@ import shuffle from "lodash.shuffle"
 
 import styles from "./Cards.module.css"
 
-export const Cards = ({ handler }) => {
+export const Cards = ({ handler, pairs }) => {
   const [cards, setCards] = useState([])
 
   useEffect(() => {
     ;(async () => {
-      const { cards } = await api.index(4)
+      const { cards } = await api.index(pairs * 2)
 
       // Duplicate the cards and then add unique id to each one (⚠️ 'references')
       const cardsWithIDs = cards.concat(Array.from(cards)).map((card, i) => {
@@ -88,4 +88,5 @@ export const Cards = ({ handler }) => {
 
 Cards.propTypes = {
   handler: PropTypes.func,
+  pairs: PropTypes.string
 }
