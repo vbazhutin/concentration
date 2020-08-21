@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 import { Form } from "./Form"
 import { Cards } from "./Cards"
-import { Timer } from "./Timer"
+import { Score } from "./Score"
 
 export const Concentration = () => {
   const [pairsOfCards, setPairsOfCards] = useState("")
@@ -29,7 +29,7 @@ export const Concentration = () => {
   return (
     <main>
       <Cards handler={handleCards} pairs={pairsOfCards} gameOver={gameOver} />
-      <Timer toggle={toggleTimer} />
+      <Score gameOver={gameOver} toggle={toggleTimer} />
     </main>
   )
 }
