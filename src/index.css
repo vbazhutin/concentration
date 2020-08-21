@@ -8,3 +8,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.my-flex {
+  display: flex;
+}
+
+.my-flex--align-center {
+  align-items: center;
+}
+
+.my-flex--justify-center {
+  justify-content: center;
+}
