@@ -19,7 +19,7 @@ export const Concentration = () => {
 
   const handleForm = (event) => {
     event.preventDefault()
-    setPairsOfCards(event.target.elements[0].value || 4)
+    setPairsOfCards(Number(event.target.elements[0].value) || 4)
   }
 
   if (!pairsOfCards) {
@@ -29,7 +29,7 @@ export const Concentration = () => {
   return (
     <main>
       <Cards handler={handleCards} pairs={pairsOfCards} gameOver={gameOver} />
-      <Score gameOver={gameOver} toggle={toggleTimer} />
+      <Score gameOver={gameOver} pairs={pairsOfCards} toggle={toggleTimer} />
     </main>
   )
 }
