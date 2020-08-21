@@ -91,7 +91,7 @@ export const Cards = ({ gameOver, handler, pairs }) => {
 }
 
 Cards.propTypes = {
-  gameOver: PropTypes.func,
+  gameOver: PropTypes.bool,
   handler: PropTypes.func,
-  pairs: PropTypes.string
+  pairs: PropTypes.number
 }
