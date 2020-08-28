@@ -1,23 +1,16 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
+
+import api from 'api'
 
 export const HiScores = () => {
-  const [scores] = useState([
-    {
-      initials: "MKT",
-      time: "2:33",
-      numOfCards: 24,
-    },
-    {
-      initials: "NKT",
-      time: "2:35",
-      numOfCards: 28,
-    },
-    {
-      initials: "TKO",
-      time: "2:55",
-      numOfCards: 28,
-    },
-  ])
+  const [scores, setScores] = useState([])
+
+    useEffect(() => {
+      (async () => {
+        const scores = await api.getScores()
+        setScores(scores)
+      })()
+    }, [])
 
   const renderTableRows = () =>
     scores.map(({ initials, time, numOfCards }, i) => (

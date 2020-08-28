@@ -8,7 +8,7 @@ export const Form = ({gameOver, time, pairs}) => {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    const res = await api.addScore({initials: event.target.elements[0].value, time, pairs})
+    const res = await api.addScore({initials: event.target.elements[0].value.toUpperCase(), time, pairs})
   }
 
 

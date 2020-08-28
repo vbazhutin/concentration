@@ -15,10 +15,9 @@ const client = new MongoClient(process.env.MONGODB_URI, {
   process.on('SIGINT', () => {
     client.close().then(() => {
       console.info('SIGINT received. Closing MongoClient.');
-
-      // Avoid plugging up ports
-      process.exit(0);
     });
+    // Avoid plugging up ports
+    process.exit(0);
   });
 })();
 

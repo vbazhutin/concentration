@@ -1,12 +1,18 @@
 import { Router } from 'express';
-import addUser from '../db';
+import { addScore, showScores } from '../db';
 
 const router = new Router();
 
-router.post('/add', async (req, res) => {
+router.get('/', async (_, res) => {
+  const mongoRes = await showScores();
+  res.status(200);
+  res.json(mongoRes);
+});
+
+router.post('/add', async ({ body }, res) => {
   res.status(201);
-  console.log(res.body);
-  // res.json(await addScoreRes())
+  const mongoRes = await addScore(body);
+  res.json(mongoRes);
 });
 
 export default router;
