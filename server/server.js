@@ -5,10 +5,12 @@ import scores from './routes/scores';
 
 const app = express();
 
+app.get('/,' (_, res) => {
+  res.send('<h1> Hello from Express </h1>')
+};
+
 app.use(
-  cors({
-    origin: 'http://localhost:3000',
-  }),
+  cors(),
 );
 app.use(express.json());
 
