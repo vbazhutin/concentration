@@ -16,4 +16,4 @@ app.use(express.json());
 
 app.use('/scores', scores);
 
-app.listen(process.ENV.PORT || 5000);
+app.listen(process.env.PORT || 5000);
