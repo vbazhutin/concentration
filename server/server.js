@@ -5,7 +5,7 @@ import scores from './routes/scores';
 
 const app = express();
 
-app.get('/,', (_, res) => {
+app.get('/', (_, res) => {
   res.send('<h1> Hello from Express </h1>');
 });
 
@@ -16,4 +16,6 @@ app.use(express.json());
 
 app.use('/scores', scores);
 
-app.listen(process.env.PORT || 5000);
+app.listen(3001, () => {
+  console.log('running on 3333');
+});
