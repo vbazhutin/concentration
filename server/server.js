@@ -7,7 +7,7 @@ const app = express();
 
 app.get('/,' (_, res) => {
   res.send('<h1> Hello from Express </h1>')
-};
+});
 
 app.use(
   cors(),
@@ -16,4 +16,4 @@ app.use(express.json());
 
 app.use('/scores', scores);
 
-app.listen(5000);
+app.listen(process.ENV.PORT || 5000);
