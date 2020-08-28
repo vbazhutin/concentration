@@ -5,8 +5,8 @@ import scores from './routes/scores';
 
 const app = express();
 
-app.get('/,' (_, res) => {
-  res.send('<h1> Hello from Express </h1>')
+app.get('/,', (_, res) => {
+  res.send('<h1> Hello from Express </h1>');
 });
 
 app.use(
