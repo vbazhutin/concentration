@@ -16,6 +16,6 @@ app.use(express.json());
 
 app.use('/scores', scores);
 
-app.listen(3001, () => {
-  console.log('running on 3333');
+app.listen(process.env.PORT || 5000, () => {
+  console.log('running on 5000');
 });
